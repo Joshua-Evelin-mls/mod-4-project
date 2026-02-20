@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#app{
+    height: 100%;
+}
+*{
+    image-rendering: pixelated;
+}
+.cardin{
+animation: cardin 200ms;
+}
+.card{
+    filter: drop-shadow(5px 10px black);
+    @apply w-full aspect-[3/5] unchosen duration-200 border-2 border-black
+}
+.card figure{}
+
+.chosen{
+    @apply scale-[85%] outline outline-green-500 outline-4 rounded-xl;
+}
+.unchosen{
+    @apply scale-100 
+}
+@keyframes cardin{
+    0%{
+        filter: opacity(0%);
+    }
+    100%{
+        filter: opacity(100%);
+    }
+}
+#inject{
+    grid-template-columns: repeat(auto-fit, minmax(min(150px, 150px), 1fr));
+}
+.HIDDEN{
+    @apply opacity-0
+}
