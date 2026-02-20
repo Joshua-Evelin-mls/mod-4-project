@@ -13,3 +13,22 @@ export const fetchCatFacts = async () => {
         return{ data: null, error: error };
     }
 }
+
+export const fetchCatImgs = async () => {
+    let data = null;
+    let error = null;
+    try {
+        const init = await fetch('https://api.thecatapi.com/v1/images/search?limit=10')
+        if (init.ok) {
+            data = await init.json()
+        } else {
+            console.log('error: ', init.status, init.statusText)
+            error = init.status + ':' + init.statusText
+        }
+    }
+    catch (err) {
+        console.log('oops something went wrong')
+        error=err
+    }
+    return { data, error }
+}
