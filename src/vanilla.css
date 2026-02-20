@@ -1,0 +1,67 @@
+/* collected-card */
+.collected-card {
+  width: 100%;
+  aspect-ratio: 3 / 5;
+  transition: transform 0.2s ease, filter 0.2s ease;
+  cursor: pointer;
+}
+
+.collected-card:hover {
+  filter: saturate(1);
+  transform: scale(0.95);
+}
+
+/* optional hidden state */
+.collected-card.HIDDEN {
+  display: none;
+}
+
+/* card-figure */
+.card-figure {
+  width: 100%;
+  aspect-ratio: 3 / 5;
+  max-width: 16rem; /* matches max-w-64 (256px) */
+  margin: 0;
+}
+
+/* card-bg */
+.card-bg {
+  background-color: white;
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  border-radius: 0.75rem; /* rounded-xl ≈ 12px */
+  overflow: hidden; /* similar to clip-content */
+}
+
+
+/* hidden */
+.hidden {
+  display: none;
+}
+
+.card {
+  /* drop shadow */
+  filter: drop-shadow(5px 10px 0 black);
+
+  /* w-full */
+  width: 100%;
+
+  /* aspect-[3/5] */
+  aspect-ratio: 3 / 5;
+
+  /* duration-200 */
+  transition: all 0.2s ease;
+
+  /* border-2 border-black */
+  border: 2px solid black;
+
+}
+
+#app {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(min(150px, 150px), 1fr));
+    gap:15px    
+}

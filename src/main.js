@@ -1,6 +1,9 @@
 import './style.css'
 import './vanilla.css'
 import 'material-icons/iconfont/material-icons.css';
+import {render} from './domHelpers.js'
+
+render()
 
 // seting up our headline
 const headlines = ['Purr-fect Pulls', 'The Kitty Cache', 'Whisker Vault', 'Paw-picked Cards', 'The Meowstash', 'Purrfolio', 'The Cat-alog']
