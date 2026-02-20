@@ -1,4 +1,5 @@
 import './style.css'
+import './vanilla.css'
 import javascriptLogo from './javascript.svg'
 import viteLogo from '/vite.svg'
 import 'material-icons/iconfont/material-icons.css';
