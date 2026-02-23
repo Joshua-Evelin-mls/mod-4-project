@@ -74,5 +74,12 @@ inject.addEventListener('click',(e)=>{
 }
 })
 
+
+const reload = document.querySelector('#reload')
+reload.addEventListener('click', () => {
+  inject.innerHTML = ''
+  populatePopUp()
+
+})
 const points = document.getElementById('points')
 points.innerText = ' '+_points
