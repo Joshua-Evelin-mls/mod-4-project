@@ -1,11 +1,14 @@
 import './style.css'
 import './vanilla.css'
 import 'material-icons/iconfont/material-icons.css';
-import {render,collection,temp, populatePopUp} from './domHelpers.js'
+import { collection,temp, populatePopUp, renderCards } from './domHelpers.js'
 
-render()
+if (collection.length > 0) {
+  renderCards()
+}
+//console.log(collection)
 
-// seting up our headline
+// setting up our headline
 const headlines = ['Purr-fect Pulls', 'The Kitty Cache', 'Whisker Vault', 'Paw-picked Cards', 'The Meowstash', 'Purrfolio', 'The Cat-alog']
 const headline = headlines[Math.floor(Math.random() * headlines.length)]
 document.getElementById('headline').innerText = headline
@@ -26,17 +29,22 @@ next.addEventListener('click',()=>{
       collection.push(temp[elem.dataset.id])
     }
     localStorage.setItem('collection',JSON.stringify({data:structuredClone(collection)}))
-    render()
 
+    app.innerHTML = ''
+    renderCards()
 })
 
+const inject = document.getElementById('inject')
 inject.addEventListener('click',(e)=>{
   
   const _ = e.target.closest('li')
   console.log('ee')
   if(_){
-    if(document.querySelectorAll('.chosen').length<5){
+    if(_.classList.contains('chosen')){
     console.log('hi')
+    _.classList.remove('chosen')
+    _.classList.add('unchosen')
+  } else if (document.querySelectorAll('.chosen').length<5) {
     _.classList.remove('unchosen')
     _.classList.add('chosen')
   }

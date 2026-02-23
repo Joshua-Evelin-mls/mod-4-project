@@ -1,4 +1,4 @@
-/* collected-card */
+
 .collected-card {
   width: 100%;
   aspect-ratio: 3 / 5;
@@ -8,55 +8,76 @@
 
 .collected-card:hover {
   filter: saturate(1);
-  transform: scale(0.95);
 }
 
-/* optional hidden state */
+
 .collected-card.HIDDEN {
   display: none;
 }
 
-/* card-figure */
+
 .card-figure {
+  height: 100%;
   width: 100%;
   aspect-ratio: 3 / 5;
-  max-width: 16rem; /* matches max-w-64 (256px) */
+  max-width: 256px; 
   margin: 0;
 }
 
-/* card-bg */
+
 .card-bg {
   background-color: white;
   height: 100%;
   width: 100%;
   background-size: cover;
   background-position: center;
-  border-radius: 0.75rem; /* rounded-xl ≈ 12px */
-  overflow: hidden; /* similar to clip-content */
+  border-radius: 12px; 
+  overflow: hidden; 
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.collected-card-back {
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+}
+
+.did-you-know {
+    font-weight: 700;
+    font-size: 20px;
+    text-align: center;
+    padding: 5px;
+}
+
+.cat-fact {
+  width: 95%;
+  max-height: 60%;
+  overflow-y: auto;
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+.cat-fact::-webkit-scrollbar {
+    display: none;
 }
 
 
-/* hidden */
 .hidden {
   display: none;
 }
 
 .card {
-  /* drop shadow */
   filter: drop-shadow(5px 10px 0 black);
-
-  /* w-full */
+  height: 100%;
   width: 100%;
-
-  /* aspect-[3/5] */
   aspect-ratio: 3 / 5;
-
-  /* duration-200 */
   transition: all 0.2s ease;
-
-  /* border-2 border-black */
   border: 2px solid black;
-
+  border-radius: 15px;
 }
 
 #app {
@@ -64,5 +85,69 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-columns: repeat(auto-fit, minmax(min(150px, 150px), 1fr));
-    gap:15px    
+    gap:15px;    
+}
+
+.full-card {
+  perspective: 1000px;
+  aspect-ratio: 3 / 5;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+
+.inner-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease;
+}
+
+.inner-card.flipped {
+  transform: rotateY(180deg);
+}
+
+.collected-card,
+.collected-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;  
+}
+
+.collected-card-back {
+  transform: rotateY(180deg);    
+}
+
+.pop-up-collected-card {
+  width: 100%;
+  aspect-ratio: 3 / 5;
+  transition: transform 0.2s ease, filter 0.2s ease;
+  cursor: pointer;
+}
+
+.pop-up-card-figure {
+  width: 100%;
+  aspect-ratio: 3 / 5;
+  max-width: 256px; 
+  margin: 0;
+}
+
+.pop-up-card-bg {
+  background-color: white;
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  border-radius: 12px;
+  overflow: hidden; 
+}
+
+.pop-up-card {
+  filter: drop-shadow(5px 10px 0 black);
+  width: 100%;
+  aspect-ratio: 3 / 5;
+  transition: all 0.2s ease;
+  border: 2px solid black;
 }
