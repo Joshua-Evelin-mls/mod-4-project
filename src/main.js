@@ -50,3 +50,11 @@ inject.addEventListener('click',(e)=>{
   }
 }
 })
+
+
+const reload = document.querySelector('#reload')
+reload.addEventListener('click', () => {
+  inject.innerHTML = ''
+  populatePopUp()
+
+})
