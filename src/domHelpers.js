@@ -40,7 +40,10 @@ export const populatePopUp = async () => {
 
 
 export const renderCards = async () => {
+
     let savedCatFacts = JSON.parse(localStorage.getItem('facts')) || {}
+
+    const deleted = new Set(JSON.parse(localStorage.getItem('deletedCards')) || [])
 
     let newCatFacts = await Promise.all(
         collection.map(async (item) => {
@@ -57,13 +60,21 @@ export const renderCards = async () => {
     for (let i = 0; i < collection.length; i++) {
         let item = collection[i]
         let catFact = newCatFacts[i]
+
+        if (deleted.has(item.url)) continue 
+
         
         let fullCard = document.createElement('div')
         fullCard.classList.add('full-card')
-
+        
         let innerCard = document.createElement('div')
         innerCard.classList.add('inner-card')
         
+        const xButton = document.createElement('button')
+        xButton.classList.add('x-button')
+        xButton.type = 'button'
+        xButton.textContent = 'x'
+
         let frontLi = document.createElement('li')
         frontLi.classList.add('collected-card')
 
@@ -105,10 +116,22 @@ export const renderCards = async () => {
         
         
         innerCard.append(frontLi, backLi)
-        fullCard.append(innerCard)
+        fullCard.append(innerCard, xButton)
 
         fullCard.addEventListener('click', () => {
             innerCard.classList.toggle('flipped')
+        })
+
+        xButton.addEventListener('click', () => {
+            deleted.add(item.url)
+            localStorage.setItem('deletedCards', JSON.stringify([...deleted]));
+
+            const cardIndex = collection.findIndex(i => i.url === item.url) 
+            if (cardIndex !== -1) collection.splice(cardIndex, 1)
+            
+            localStorage.setItem('collection', JSON.stringify({data: structuredClone(collection)})) 
+           
+            fullCard.remove()
         })
 
         app.append(fullCard)
