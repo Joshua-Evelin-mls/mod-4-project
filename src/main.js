@@ -3,7 +3,7 @@ import './vanilla.css'
 import 'material-icons/iconfont/material-icons.css';
 import { collection,temp, populatePopUp, renderCards } from './domHelpers.js'
 
-let _points = Number(localStorage.getItem('points'))||localStorage.setItem('points',1)||Number(localStorage.getItem('points'))
+let _points = Number(localStorage.getItem('points'))||localStorage.setItem('points',0)||Number(localStorage.getItem('points'))
 const dateLastGifted = localStorage.getItem('giftDate')||0
 
 
