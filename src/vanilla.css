@@ -149,3 +149,17 @@
   transition: all 0.2s ease;
   border: 2px solid black;
 }
+
+.x-button {
+    font-size: 13px;
+    font-weight: 1000;
+    color: black;
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 0px 5px;
+    background-color: white;
+
+    position: absolute;
+    top: 6px;
+    right: 6px;
+}
