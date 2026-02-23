@@ -1,3 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Annie+Use+Your+Telescope&family=Mystery+Quest&display=swap');
+
+.mystery-quest-regular,h1,h2,h3,h4,h5 {
+  font-family: "Mystery Quest", system-ui;
+  font-weight: 400;
+  line-height: 1;
+  font-size: 150%;
+}
+h1{
+  font-size: 70px;
+}
+
+.flex-wrap{
+  flex-wrap: wrap;
+}
+.annie-use-your-telescope-regular,p, a ,button,span,#points-container {
+  font-family: "Annie Use Your Telescope", cursive;
+  font-weight: 400;
+  font-size: 150%;
+  line-height: 1;
+}
+
+
 *, ::before, ::after {
   --tw-border-spacing-x: 0;
   --tw-border-spacing-y: 0;
@@ -204,15 +227,6 @@ abbr:where([title]) {
 Remove the default font size and weight for headings.
 */
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-size: inherit;
-  font-weight: inherit;
-}
 
 /*
 Reset links to optimize for opt-in styling instead of opt-out.
@@ -643,9 +657,24 @@ video {
 .max-w-5xl {
   max-width: 64rem;
 }
+.max-w-3xl {
+  max-width: 48rem;
+}
+.min-w-3xl {
+  max-width: 48rem;
+}
 
 .max-w-64 {
   max-width: 16rem;
+}
+.max-w-32 {
+  max-width: 16rem;
+}
+.min-w-64 {
+  min-width: 16rem;
+}
+.min-w-32 {
+  min-width: 16rem;
 }
 
 .-translate-y-full {
@@ -848,4 +877,27 @@ video {
   .md\:p-16 {
     padding: 4rem;
   }
+}
+
+nav ul{
+  margin-top: 0.5rem;
+}
+li a{
+  border: 2px solid black;
+  padding: 0.25rem 1rem;
+  border-radius: 0.5rem;
+  
+}
+button:disabled{
+  opacity: 0.4;
+}
+#daily:not(:disabled){
+  background: greenyellow;
+}
+.mascot{
+  position: fixed;
+  bottom: 0px;
+  filter: opacity(0.6);
+  transition-duration: 200ms;
+  pointer-events: none;
 }
