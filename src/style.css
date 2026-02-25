@@ -850,6 +850,8 @@ video {
   }
 }
 
+
+
 #inject{
   grid-template-columns: repeat(auto-fit, minmax(min(150px, 150px), 1fr));
 }
@@ -897,8 +899,25 @@ button:disabled{
 }
 .mascot{
   position: fixed;
+  transform: scale(75%);
+  transform-origin: bottom;
   bottom: 0px;
+  left: 0px;
   filter: opacity(0.6);
   transition-duration: 200ms;
   pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+.btn{
+    border: 2px solid black;
+  padding: 0.25rem 1rem;
+  border-radius: 0.5rem;
+}
+.mult{
+  mix-blend-mode: multiply;
+  filter: opacity(0.7) saturate(0.6);
+}
+body{
+  height: 100vh;
 }
