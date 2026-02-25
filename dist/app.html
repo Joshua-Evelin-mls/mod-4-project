@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mod-4-project</title>
+    <link href="https://fonts.googleapis.com" rel="stylesheet">
+    <script type="module" crossorigin src="/mod-4-project/assets/index-PZBDJeC2.js"></script>
+    <link rel="stylesheet" crossorigin href="/mod-4-project/assets/index-C3i-DOVU.css">
+  </head>
+  <body> 
+     <nav class="flex items-center">
+      <ul class="list-none flex gap-5 p-4">
+        <li><a class="material-icons" href="index.html">home</a></li>
+        <li><a class="material-icons" href="app.html">games</a></li>
+          <li><button class="material-icons btn" id="form-btn" href="app.html">quiz</button></li>
+      </ul>
+        <button class="flex ml-auto mr-6 border-2 border-black rounded-3xl gap-5 switch"><div id="english">en</div><div id="spanish">es</div></button>
+    </nav>
+    <header class='p-4' ><h1 id="headline" class='text-5xl p-4 flex justify-center'></h1>
+        <section class='flex w-fit ml-auto mr-auto gap-3 items-center'></button><button id="daily" class= ' rounded-xl border-2 h-fit w-fit p-2 border-black material-icons'>redeem</button><button id="points-container" class=" border-2 h-fit w-fit p-2 border-black rounded-xl">points:<span id="points"></span></button><button id="generate" class= 'rounded-xl border-2 h-fit w-fit p-2 border-black material-icons' >pets</button></section>
+    </header>
+    <ul id="app" data-path="/app">
+
+    </ul>
+    <!-- utility -->
+<div class="hidden top-0 hover:-translate-y-2 saturate-75"></div>
+<div id="pop-up" class="fixed z-20 top-0 duration-500 -translate-y-full p-2 md:p-16 w-full flex items-center justify-center h-full right-0">
+  <div class="w-full h-full relative border-black border-2 rounded-xl bg-white">
+    <button id="next" style="border-right: 2px solid black; border-bottom: 2px solid black; border-bottom-right-radius: 0.75rem; border-top-left-radius: 0.75rem;" class="absolute top-0 left-0 font-bold bg-white px-5 py-2 z-20">Continue</button>
+    <button id="reload" style="border-left: 2px solid black; border-bottom: 2px solid black; border-bottom-left-radius: 0.75rem; border-top-right-radius: 0.75rem;" class="absolute top-0 right-0 font-bold bg-white px-5 py-2 z-20">Reload</button>
+    <section class='w-full h-full overflow-y-scroll flex flex-col gap-3 items-center justify-center'>
+      <ul id="inject" class='grid grid-cols-3 gap-5 w-full list-none h-full m-1 mb-10 max-w-5xl mt-[5rem]'></ul>
+    </section>
+  </div>
+</div>
+<div id="form-pop-up" class="fixed z-20 top-0 duration-500 -translate-y-full p-2 md:p-16 w-full flex items-center justify-center h-full right-0">
+  <form id="form" class="w-full h-full relative border-black border-2 rounded-xl bg-white p-2 gap-3 flex flex-col">
+    <button id="close-form" class="x-button">x</button>
+    <h3>submit feedback for a chance to earn points</h3>
+    <div class="h-full">
+    <label for="feedback">Feedback</label>
+    <textarea id="feedback" name="feedback" class="btn w-full h-full" required></textarea>
+  </div>
+  <div class="p-4">
+  <p class="p-2">*20 characters minimum :)</p>
+  <button type="submit" class="btn" id="submit">Submit Feedack</button>
+</div>
+  </form>
+</div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
