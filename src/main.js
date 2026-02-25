@@ -5,11 +5,10 @@ import { collection,temp, populatePopUp, renderCards, renderSpanish, spanishColl
 
 let _points = Number(localStorage.getItem('points'))||localStorage.setItem('points',0)||Number(localStorage.getItem('points'))
 const dateLastGifted = localStorage.getItem('giftDate')||0
-
+const translate = {'english':'A fun app for cat lovers to learn more about cats while looking at cute cats. Come in every day of the week to get up to 35 new cat pictures!','spanish':'Una aplicación divertida para amantes de los gatos donde puedes aprender más sobre los gatos mientras miras gatitos adorables. ¡Entra todos los días de la semana para obtener hasta 35 nuevas fotos de gatos!'}
 let isSpanish = localStorage.getItem('language') === 'spanish'
 let isEnglish = localStorage.getItem('language') === 'english'
 const app = document.querySelector('#app')
-
 app&&renderHeadline()
 
 if (isSpanish) {
@@ -104,15 +103,29 @@ const points = document.getElementById('points')
 if(points){points.innerText = ' '+_points}
 
 
-
+const play = document.getElementById('play')
+const para = document.getElementById('para')
+if(play){
+  const curlang = localStorage.getItem('language')
+  if(curlang=='spanish'){
+    document.querySelector('.switch').classList.add('switch-on')
+  console.log(curlang)}
+  play.innerHTML = curlang=='spanish'?'Comenzar':'Start'
+  para.innerHTML = translate[curlang]
+}
 const isSpanishDom = document.querySelector('.switch')
 
 isSpanishDom.addEventListener('click', () => {
   const curlang = localStorage.getItem('language')
+  console.log(curlang)
   localStorage.setItem('language', curlang=='spanish'?'english':'spanish')
   if(app)app.innerHTML = ''
   app&&renderHeadline()
+  if(play){
+  play.innerHTML = curlang=='spanish'?'Start':'Comenzar'
+  para.innerHTML = translate[localStorage.getItem('language')]
+}
   curlang=='spanish'?renderCards():renderSpanish()
-  curlang=='spanish'?isSpanishDom.classList.add('switch-on'):isSpanishDom.classList.remove('switch-on')
+  curlang=='spanish'?isSpanishDom.classList.remove('switch-on'):isSpanishDom.classList.add('switch-on')
 })
 
