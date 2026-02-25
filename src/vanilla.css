@@ -10,6 +10,9 @@
   filter: saturate(1);
 }
 
+.mr-6{
+margin-right: 1rem;
+}
 
 .collected-card.HIDDEN {
   display: none;
