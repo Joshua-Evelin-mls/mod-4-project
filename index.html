@@ -13,17 +13,18 @@
         <ul class="list-none flex gap-5 p-4">
           <li><a class="material-icons" href="index.html">home</a></li>
           <li><a class="material-icons" href="app.html">games</a></li>
+          <li><button class="material-icons btn" href="app.html" id="form-btn">quiz</button></li>
         </ul>
         <button class="flex ml-auto mr-6 border-2 border-black rounded-3xl gap-5 switch"><div id="english">en</div><div id="spanish">es</div></button>
       </nav>
     </header>
     
-    <main class="w-full flex justify-center flex-col items-center">
+    <main class="w-full flex justify-center flex-col items-center p-10 gap-3">
       <img class="mascot" src="https://img1.picmix.com/output/stamp/normal/7/1/2/0/1560217_adbd3.gif" alt="Cat game logo">
-      <h1 class="text-center p-2">Mewmix</h1>
-      <div class="flex flex-wrap items-center justify-center w-fit">
+      <h1 class="text-center p-10">Mewmix</h1>
+      <div class="flex flex-wrap items-center justify-center w-fit btn">
         
-        <img class="p-10 " src="https://media2.giphy.com/media/v1.Y2lkPTZjMDliOTUyaW9vdzMwM3JiY3c2Y2tkaHdzNWxjeWh1cDU4MTk3ZGF6b2JoaXEyMCZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/pr1dbVONbGeVvSiECh/giphy.gif" alt="orange cat waving">
+        <img class="p-10 mult" src="https://media2.giphy.com/media/v1.Y2lkPTZjMDliOTUyaW9vdzMwM3JiY3c2Y2tkaHdzNWxjeWh1cDU4MTk3ZGF6b2JoaXEyMCZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/pr1dbVONbGeVvSiECh/giphy.gif" alt="orange cat waving">
         <div class=" p-10 grid gap-3 max-w-3xl w-full min-w-3xl">
           <p class="text-center" id="para">A fun app for cat lovers to learn more about cats while looking at cute cats. Come in every day of the week to get up to 35 new cat pictures!</p>
           <div class="text-center">
@@ -33,6 +34,21 @@
       </div>
       <div class="spacer"></div>
     </main>
+    <div id="form-pop-up" class="fixed z-20 top-0 duration-500 -translate-y-full p-2 md:p-16 w-full flex items-center justify-center h-full right-0">
+  <form id="form" class="w-full h-full relative border-black border-2 rounded-xl bg-white p-2 gap-3 flex flex-col">
+    <button id="close-form" class="x-button">x</button>
+    <h3>submit feedback for a chance to earn points</h3>
+    <div class="h-full">
+    <label for="feedback">Feedback</label>
+    <textarea id="feedback" name="feedback" class="btn w-full h-full" required></textarea>
+  </div>
+  <div class="p-4">
+  <p class="p-2">*20 characters minimum :)</p>
+  <button type="submit" class="btn" id="submit">Submit Feedack</button>
+</div>
+  </form>
+</div>
+
   </body>
   
     <script type="module" src="/src/main.js"></script>
