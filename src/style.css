@@ -914,17 +914,6 @@ button:disabled{
 #daily:not(:disabled){
   background: rgb(255, 1, 145);
 }
-.mascot{
-  position: fixed;
-  transform: scale(75%);
-  transform-origin: bottom;
-  bottom: 0px;
-  left: 0px;
-  filter: opacity(0.6);
-  transition-duration: 200ms;
-  pointer-events: none;
-  mix-blend-mode: overlay;
-}
 
 .btn{
     border: 2px solid black;
