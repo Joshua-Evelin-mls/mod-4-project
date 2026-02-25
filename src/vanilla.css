@@ -46,7 +46,7 @@
 }
 
 .did-you-know {
-    font-weight: 700;
+    /* font-weight: 700; */
     font-size: 20px;
     text-align: center;
     padding: 5px;
@@ -163,3 +163,31 @@
     top: 6px;
     right: 6px;
 }
+
+.switch{
+background-color: rgb(167, 167, 167);
+  width: fit-content;
+  height: 30px;
+  border-radius: 999px;
+  transition-duration: 200ms;
+  position: relative;
+  display: flex;
+}
+
+
+/* .switch::after{
+  position: absolute;
+  content:'  ';
+  top: 2px;
+  margin: 2px;
+  min-width: 50%;
+  min-height: 20px;
+  border: solid 2px transparent;
+  background-color:moccasin;
+  
+  border-radius: 9999px;
+
+} */
+
+
+
