@@ -1,10 +1,10 @@
-import { fetchCatImgs, fetchCatFacts } from "./dataRetrieval.js"
+import { fetchCatImgs, fetchCatFacts, fetchLanguage } from "./dataRetrieval.js"
 
 export let collection = JSON.parse(localStorage.getItem('collection'))?.data||[]
 export let temp = []
 
+export let spanishCollection = JSON.parse(localStorage.getItem('spanishCollection'))?.data || []
 
-     
 
 const app = document.querySelector('#app') 
 
@@ -40,6 +40,9 @@ export const populatePopUp = async () => {
 
 
 export const renderCards = async () => {
+
+    let collection = JSON.parse(localStorage.getItem('collection'))?.data || []
+    console.log(`Collection: ${collection}`)
 
     let savedCatFacts = JSON.parse(localStorage.getItem('facts')) || {}
 
@@ -136,4 +139,112 @@ export const renderCards = async () => {
 
         app.append(fullCard)
     }
+}
+
+export const renderSpanish = async () => {   
+    let spanishCollection = JSON.parse(localStorage.getItem('spanishCollection'))?.data||[]
+
+    let savedSpanishFacts = JSON.parse(localStorage.getItem('spanishFacts')) || {}
+
+    const deleted = new Set(JSON.parse(localStorage.getItem('deletedCards')) || [])
+
+    let newCatFacts = await Promise.all(
+        spanishCollection.map(async (item) => {
+            if (savedSpanishFacts[item.url]) return savedSpanishFacts[item.url]
+            const result = await fetchLanguage()
+            const fact = result.data.data
+            savedSpanishFacts[item.url] = fact
+            return fact
+        })
+    )
+
+    localStorage.setItem('spanishFacts', JSON.stringify(savedSpanishFacts))
+
+    for (let i = 0; i < spanishCollection.length; i++) {
+        let item = spanishCollection[i]
+        let catFact = newCatFacts[i]
+
+        if (deleted.has(item.url)) continue 
+
+        
+        let fullCard = document.createElement('div')
+        fullCard.classList.add('full-card')
+        
+        let innerCard = document.createElement('div')
+        innerCard.classList.add('inner-card')
+        
+        const xButton = document.createElement('button')
+        xButton.classList.add('x-button')
+        xButton.type = 'button'
+        xButton.textContent = 'x'
+
+        let frontLi = document.createElement('li')
+        frontLi.classList.add('collected-card')
+
+        let figure = document.createElement('figure')
+        figure.classList.add('card-figure')
+        frontLi.append(figure)
+
+        let div = document.createElement('div')
+        div.classList.add('card-bg', 'card')
+        div.style.backgroundImage = `url('${item.url}')`
+        figure.append(div)
+        
+
+        
+        let backLi = document.createElement('li')
+        backLi.classList.add('collected-card-back')
+
+        let figure2 = document.createElement('div')
+        figure2.classList.add('card-figure')
+        backLi.append(figure2)
+
+        let card = document.createElement('div')
+        card.classList.add('card')
+        figure2.append(card)
+
+        let cardBg = document.createElement('div')
+        cardBg.classList.add('card-bg')
+        card.append(cardBg)
+
+        let p = document.createElement('p')
+        p.classList.add('did-you-know')
+        p.textContent = '¿Sabías que...?'
+
+        let p2 = document.createElement('p')
+        p2.classList.add('cat-fact')
+        p2.textContent = catFact
+
+        cardBg.append(p, p2)
+        
+        
+        innerCard.append(frontLi, backLi)
+        fullCard.append(innerCard, xButton)
+
+        fullCard.addEventListener('click', () => {
+            innerCard.classList.toggle('flipped')
+        })
+
+        xButton.addEventListener('click', () => {
+            deleted.add(item.url)
+            localStorage.setItem('deletedCards', JSON.stringify([...deleted]));
+
+            const cardIndex = spanishCollection.findIndex(i => i.url === item.url) 
+            if (cardIndex !== -1) spanishCollection.splice(cardIndex, 1)
+            
+            localStorage.setItem('spanishCollection', JSON.stringify({data: structuredClone(spanishCollection)})) 
+           
+            fullCard.remove()
+        })
+
+        app.append(fullCard)
+    }
+} 
+
+
+export const renderHeadline = () => {
+    let headlines = localStorage.getItem('language') === 'spanish'
+        ? ['La Reserva Gatuna', 'Galería de Gatitos', 'El Museo del Minino', 'El Archivo de las Nueve Vidas', 'La Coleccion Miau', 'La Purr-folio', 'El Cat-álogo']
+        : ['Purr-fect Pulls', 'The Kitty Cache', 'Whisker Vault', 'Paw-picked Cards', 'The Meowstash', 'Purrfolio', 'The Cat-alog']
+    document.getElementById('headline').innerText = headlines[Math.floor(Math.random() * headlines.length)]
 }
