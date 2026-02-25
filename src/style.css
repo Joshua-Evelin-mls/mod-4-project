@@ -197,6 +197,7 @@ body {
   /* 1 */
   line-height: inherit;
   /* 2 */
+  background-color: #e0bfcf ;
 }
 
 /*
@@ -892,7 +893,7 @@ button:disabled{
   opacity: 0.4;
 }
 #daily:not(:disabled){
-  background: greenyellow;
+  background: rgb(255, 1, 145);
 }
 .mascot{
   position: fixed;
