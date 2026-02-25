@@ -8,8 +8,9 @@ const dateLastGifted = localStorage.getItem('giftDate')||0
 
 let isSpanish = localStorage.getItem('language') === 'spanish'
 let isEnglish = localStorage.getItem('language') === 'english'
+const app = document.querySelector('#app')
 
-renderHeadline()
+app&&renderHeadline()
 
 if (isSpanish) {
     console.log(`spanishCollection: ${spanishCollection}`)
@@ -21,13 +22,13 @@ if (isSpanish) {
 
 // ensuring the popup shows up when we click the button
 const pop = document.getElementById('pop-up')
-document.getElementById('generate').addEventListener('click',()=>{
+pop&&document.getElementById('generate').addEventListener('click',()=>{
   pop.classList.remove('-translate-y-full');
   populatePopUp()
 })
 
 const next = document.getElementById('next')
-  next.addEventListener('click',()=>{
+next&&next.addEventListener('click',()=>{
     pop.classList.add('-translate-y-full');
     let chosen = document.querySelectorAll('.chosen')
 
@@ -64,7 +65,7 @@ const today = new Date();
 const formattedDate = String(today.toLocaleDateString('en-GB'));
 console.log(formattedDate)
 dateLastGifted==formattedDate?daily.setAttribute('disabled',true):''
-daily.addEventListener('click', async ()=>{
+daily&&daily.addEventListener('click', async ()=>{
   console.log(dateLastGifted)
     localStorage.setItem('giftDate',String(formattedDate))
     daily.setAttribute('disabled',true)
@@ -75,7 +76,7 @@ daily.addEventListener('click', async ()=>{
 
 
 const inject = document.getElementById('inject')
-inject.addEventListener('click',(e)=>{
+inject&&inject.addEventListener('click',(e)=>{
   
   const _ = e.target.closest('li')
   console.log('ee')
@@ -93,31 +94,25 @@ inject.addEventListener('click',(e)=>{
 
 
 const reload = document.querySelector('#reload')
-reload.addEventListener('click', () => {
+reload&&reload.addEventListener('click', () => {
   inject.innerHTML = ''
   populatePopUp()
 
 })
 
 const points = document.getElementById('points')
-points.innerText = ' '+_points
+if(points){points.innerText = ' '+_points}
 
 
-const app = document.querySelector('#app')
 
-const spanish = document.querySelector('#spanish')
-spanish.addEventListener('click', () => {
-  localStorage.setItem('language', 'spanish')
-  app.innerHTML = ''
-  renderHeadline()
-  renderSpanish()
-})
+const isSpanishDom = document.querySelector('.switch')
 
-const english = document.querySelector('#english')
-english.addEventListener('click', () => {
-  localStorage.setItem('language', 'english')
-  app.innerHTML = ''
-  renderHeadline()
-  renderCards()
+isSpanishDom.addEventListener('click', () => {
+  const curlang = localStorage.getItem('language')
+  localStorage.setItem('language', curlang=='spanish'?'english':'spanish')
+  if(app)app.innerHTML = ''
+  app&&renderHeadline()
+  curlang=='spanish'?renderCards():renderSpanish()
+  curlang=='spanish'?isSpanishDom.classList.add('switch-on'):isSpanishDom.classList.remove('switch-on')
 })
 
