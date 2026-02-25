@@ -165,29 +165,40 @@
 }
 
 .switch{
-background-color: rgb(167, 167, 167);
+background-color: rgb(255, 255, 255);
   width: fit-content;
   height: 30px;
   border-radius: 999px;
   transition-duration: 200ms;
   position: relative;
   display: flex;
+  padding: 3px;
+  align-items: center;
 }
 
-
-/* .switch::after{
+.switch div{
+  z-index: 20;
+  padding: 1px;
+}
+.switch::after{
   position: absolute;
-  content:'  ';
-  top: 2px;
-  margin: 2px;
+  display: flex;
+  content: '';
+  top: 0px;
+  left: 0px;
   min-width: 50%;
+  width: 100%;
   min-height: 20px;
   border: solid 2px transparent;
-  background-color:moccasin;
-  
+  background-color:rgb(251, 197, 255);
+  width: 50%;
+  height: 100%;
   border-radius: 9999px;
+  transition-duration: 200ms;
 
-} */
+}
 
-
+.switch-on::after{
+  margin-left: 50%;
+}
 

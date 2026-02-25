@@ -5,11 +5,11 @@ import { collection,temp, populatePopUp, renderCards, renderSpanish, spanishColl
 
 let _points = Number(localStorage.getItem('points'))||localStorage.setItem('points',0)||Number(localStorage.getItem('points'))
 const dateLastGifted = localStorage.getItem('giftDate')||0
-
+const translate = {'english':'A fun app for cat lovers to learn more about cats while looking at cute cats. Come in every day of the week to get up to 35 new cat pictures!','spanish':'Una aplicación divertida para amantes de los gatos donde puedes aprender más sobre los gatos mientras miras gatitos adorables. ¡Entra todos los días de la semana para obtener hasta 35 nuevas fotos de gatos!'}
 let isSpanish = localStorage.getItem('language') === 'spanish'
 let isEnglish = localStorage.getItem('language') === 'english'
-
-renderHeadline()
+const app = document.querySelector('#app')
+app&&renderHeadline()
 
 if (isSpanish) {
     console.log(`spanishCollection: ${spanishCollection}`)
@@ -21,13 +21,13 @@ if (isSpanish) {
 
 // ensuring the popup shows up when we click the button
 const pop = document.getElementById('pop-up')
-document.getElementById('generate').addEventListener('click',()=>{
+pop&&document.getElementById('generate').addEventListener('click',()=>{
   pop.classList.remove('-translate-y-full');
   populatePopUp()
 })
 
 const next = document.getElementById('next')
-  next.addEventListener('click',()=>{
+next&&next.addEventListener('click',()=>{
     pop.classList.add('-translate-y-full');
     let chosen = document.querySelectorAll('.chosen')
 
@@ -64,7 +64,7 @@ const today = new Date();
 const formattedDate = String(today.toLocaleDateString('en-GB'));
 console.log(formattedDate)
 dateLastGifted==formattedDate?daily.setAttribute('disabled',true):''
-daily.addEventListener('click', async ()=>{
+daily&&daily.addEventListener('click', async ()=>{
   console.log(dateLastGifted)
     localStorage.setItem('giftDate',String(formattedDate))
     daily.setAttribute('disabled',true)
@@ -75,7 +75,7 @@ daily.addEventListener('click', async ()=>{
 
 
 const inject = document.getElementById('inject')
-inject.addEventListener('click',(e)=>{
+inject&&inject.addEventListener('click',(e)=>{
   
   const _ = e.target.closest('li')
   console.log('ee')
@@ -93,31 +93,39 @@ inject.addEventListener('click',(e)=>{
 
 
 const reload = document.querySelector('#reload')
-reload.addEventListener('click', () => {
+reload&&reload.addEventListener('click', () => {
   inject.innerHTML = ''
   populatePopUp()
 
 })
 
 const points = document.getElementById('points')
-points.innerText = ' '+_points
+if(points){points.innerText = ' '+_points}
 
 
-const app = document.querySelector('#app')
+const play = document.getElementById('play')
+const para = document.getElementById('para')
+if(play){
+  const curlang = localStorage.getItem('language')
+  if(curlang=='spanish'){
+    document.querySelector('.switch').classList.add('switch-on')
+  console.log(curlang)}
+  play.innerHTML = curlang=='spanish'?'Comenzar':'Start'
+  para.innerHTML = translate[curlang]
+}
+const isSpanishDom = document.querySelector('.switch')
 
-const spanish = document.querySelector('#spanish')
-spanish.addEventListener('click', () => {
-  localStorage.setItem('language', 'spanish')
-  app.innerHTML = ''
-  renderHeadline()
-  renderSpanish()
-})
-
-const english = document.querySelector('#english')
-english.addEventListener('click', () => {
-  localStorage.setItem('language', 'english')
-  app.innerHTML = ''
-  renderHeadline()
-  renderCards()
+isSpanishDom.addEventListener('click', () => {
+  const curlang = localStorage.getItem('language')
+  console.log(curlang)
+  localStorage.setItem('language', curlang=='spanish'?'english':'spanish')
+  if(app)app.innerHTML = ''
+  app&&renderHeadline()
+  if(play){
+  play.innerHTML = curlang=='spanish'?'Start':'Comenzar'
+  para.innerHTML = translate[localStorage.getItem('language')]
+}
+  curlang=='spanish'?renderCards():renderSpanish()
+  curlang=='spanish'?isSpanishDom.classList.remove('switch-on'):isSpanishDom.classList.add('switch-on')
 })
 
