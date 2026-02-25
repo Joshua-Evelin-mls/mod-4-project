@@ -105,12 +105,8 @@ points.innerText = ' '+_points
 
 const app = document.querySelector('#app')
 
-const enButton = document.querySelector('.en-button')
-const esButton = document.querySelector('.es-button')
-
 const spanish = document.querySelector('#spanish')
 spanish.addEventListener('click', () => {
-  console.log('spanish clicked')
   localStorage.setItem('language', 'spanish')
   app.innerHTML = ''
   renderHeadline()
@@ -119,7 +115,6 @@ spanish.addEventListener('click', () => {
 
 const english = document.querySelector('#english')
 english.addEventListener('click', () => {
-  //english.classList.add('en-button')
   localStorage.setItem('language', 'english')
   app.innerHTML = ''
   renderHeadline()

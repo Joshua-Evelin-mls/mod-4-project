@@ -174,20 +174,6 @@ background-color: rgb(167, 167, 167);
   display: flex;
 }
 
-.es-button {
-    background-color: moccasin;
-    padding-left: 10px;
-    padding-right: 10px;
-    border-radius: 10px;
-}
-
-.en-button {
-    background-color: moccasin;
-    padding-left: 10px;
-    padding-right: 10px;
-    border-radius: 10px;
-}
-
 
 /* .switch::after{
   position: absolute;
