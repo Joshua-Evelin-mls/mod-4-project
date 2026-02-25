@@ -818,9 +818,26 @@ video {
   transition-duration: 200ms;
   --tw-scale-x: 1;
   --tw-scale-y: 1;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+  transition-duration: 200ms;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  animation:dance 2000ms  ease-in-out infinite;
 }
+@keyframes dance {
+0%{
+  transform: rotateZ(5deg);
+}
+50%{
+  transform: rotateZ(-5deg);
+  
+}
+0%{
 
+  transform: rotateZ(0deg);
+}
+}
+.card:hover{
+animation: none;
+}
 .card figure{
 }
 
