@@ -162,7 +162,7 @@ if (isSpanishDom && localStorage.getItem('language') === 'spanish') {
   })
 // --- Home Page (play button, feedback) ---
 if (play) {
-  const curlang = localStorage.getItem('language')
+  const curlang = localStorage.getItem('language')||'english'
 
   play.innerHTML = curlang === 'spanish' ? 'Comenzar' : 'Start'
   para.innerHTML = translate[curlang]
